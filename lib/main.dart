@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quote.dart';
+import 'quote_card.dart';
 
 void main() {
   runApp(MaterialApp(debugShowCheckedModeBanner: false, home: DataList()));
@@ -32,34 +33,23 @@ class _DataListState extends State<DataList> {
       author: 'Marcus Tullius Cicero',
       text: 'A room without books is like a body without a soul.',
     ),
-    Quote(author: 'Mae West', text: 'You only live once, but if you do it right, once is enough.'),
-    Quote(author: 'Mae West', text: 'You only live once, but if you do it right, once is enough.'),
-    Quote(author: 'charlie Chaplin', text: 'A day without laughter is a day wasted.'),
-    Quote(author: 'Mark Twain', text: 'The secret of getting ahead is getting started.')
+    Quote(
+      author: 'Mae West',
+      text: 'You only live once, but if you do it right, once is enough.',
+    ),
+    Quote(
+      author: 'Mae West',
+      text: 'You only live once, but if you do it right, once is enough.',
+    ),
+    Quote(
+      author: 'charlie Chaplin',
+      text: 'A day without laughter is a day wasted.',
+    ),
+    Quote(
+      author: 'Mark Twain',
+      text: 'The secret of getting ahead is getting started.',
+    ),
   ];
-
-  Widget quoteTemplate(quote) {
-    return Card(
-      margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-              quote.text,
-              style: TextStyle(fontSize: 18.0, color: Colors.grey[600]),
-            ),
-            SizedBox(height: 6.0),
-            Text(
-              quote.author,
-              style: TextStyle(fontSize: 14.0, color: Colors.grey[800]),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +72,15 @@ class _DataListState extends State<DataList> {
       body: SingleChildScrollView(
         child: Column(
           children: qoutes.map((quote) {
-            return quoteTemplate(quote);
+            return Quotecard(
+              quote: quote,
+              delete: (){
+                setState(() {
+                  qoutes.remove(quote);
+                });
+              }
+              
+            );
           }).toList(),
         ),
       ),
