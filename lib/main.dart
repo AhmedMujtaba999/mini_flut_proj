@@ -4,9 +4,15 @@ void main() {
   runApp(const MaterialApp(debugShowCheckedModeBanner: false, home: Card()));
 }
 
-class Card extends StatelessWidget {
+class Card extends StatefulWidget {
   const Card({super.key});
 
+  @override
+  State<Card> createState() => _CardState();
+}
+
+class _CardState extends State<Card> {
+  int ahmedLevel=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +70,7 @@ class Card extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             Text(
-              "10",
+              "$ahmedLevel",
               style: TextStyle(
                 color: Colors.amberAccent,
                 letterSpacing: 2.0,
@@ -91,6 +97,17 @@ class Card extends StatelessWidget {
           ],
         ),
       ),
+     floatingActionButton: FloatingActionButton(
+
+      onPressed: (){
+       setState((){
+        ahmedLevel+=1;
+       });
+      },
+      child: Icon(Icons.add, color: Colors.white,),
+      backgroundColor: Colors.grey[800],
+     ),
+
     );
   }
 }
