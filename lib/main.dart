@@ -11,14 +11,56 @@ class DataList extends StatefulWidget {
 }
 
 class _DataListState extends State<DataList> {
-  List<Quote> qoutes= [
-   Quote(author: 'Osca wilde', text: 'The only way to do great work is to love what you do.'),
-    Quote(author: 'Albert Einstein', text: 'Life is like riding a bicycle. To keep your balance you must keep moving.'),
+  List<Quote> qoutes = [
+    Quote(
+      author: 'Osca wilde',
+      text: 'The only way to do great work is to love what you do.',
+    ),
+    Quote(
+      author: 'Albert Einstein',
+      text:
+          'Life is like riding a bicycle. To keep your balance you must keep moving.',
+    ),
     Quote(author: 'Yoda', text: 'Do, or do not. There is no try.'),
-    Quote(author: 'Marilyn Monroe', text: 'Imperfection is beauty, madness is genius and it\'s better to be absolutely ridiculous than absolutely boring.'),
+    Quote(
+      author: 'Marilyn Monroe',
+      text:
+          'Imperfection is beauty, madness is genius and it\'s better to be absolutely ridiculous than absolutely boring.',
+    ),
     Quote(author: 'Frank Zappa', text: 'So many books, so little time.'),
-    Quote(author: 'Marcus Tullius Cicero', text: 'A room without books is like a body without a soul.')   
+    Quote(
+      author: 'Marcus Tullius Cicero',
+      text: 'A room without books is like a body without a soul.',
+    ),
+    Quote(author: 'Mae West', text: 'You only live once, but if you do it right, once is enough.'),
+    Quote(author: 'Mae West', text: 'You only live once, but if you do it right, once is enough.'),
+    Quote(author: 'charlie Chaplin', text: 'A day without laughter is a day wasted.'),
+    Quote(author: 'Mark Twain', text: 'The secret of getting ahead is getting started.')
   ];
+
+  Widget quoteTemplate(quote) {
+    return Card(
+      margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              quote.text,
+              style: TextStyle(fontSize: 18.0, color: Colors.grey[600]),
+            ),
+            SizedBox(height: 6.0),
+            Text(
+              quote.author,
+              style: TextStyle(fontSize: 14.0, color: Colors.grey[800]),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +79,13 @@ class _DataListState extends State<DataList> {
         centerTitle: true,
         backgroundColor: Colors.redAccent,
       ),
-      body: Column(children: qoutes.map((quote){
-        return Text('${quote.text} it\'s author name ---> ${quote.author}');
-
-      }).toList(),
-
-        
-      )
+      body: SingleChildScrollView(
+        child: Column(
+          children: qoutes.map((quote) {
+            return quoteTemplate(quote);
+          }).toList(),
+        ),
+      ),
     );
   }
 }
